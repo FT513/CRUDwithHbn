@@ -24,9 +24,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.3.2</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
         </dependency>
 
         <dependency>
@@ -56,13 +56,13 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>8.4.1</version>
                 <configuration>
-                    <user>postgres</user>
+                    <user>root</user>
                     <password>Rfvbgt79</password>
                     <schemas>
                         <schema>practice</schema>
                     </schemas>
                     <url>
-                        jdbc:postgresql://localhost:5432/practice
+                        jdbc:mysql://localhost:3306/practice
                     </url>
                 </configuration>
                 <executions>
