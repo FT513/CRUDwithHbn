@@ -19,7 +19,6 @@ public class LabelService {
         this.labelRepository = labelRepository;
     }
 
-
     public Label update(Label label) {
         return labelRepository.update(label);
     }

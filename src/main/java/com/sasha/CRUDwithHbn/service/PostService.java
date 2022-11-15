@@ -21,7 +21,6 @@ public class PostService {
         this.postRepository = postRepositoryConstr;
     }
 
-
     public Post getById(Integer id) {
         return postRepository.getById(id);
     }

@@ -57,6 +57,7 @@
                 <version>7.0.0</version>
                 <configuration>
                     <url>jdbc:mysql://localhost:3306/datahiber</url>
+                    <schemas>datahiber</schemas>
                     <user>root</user>
                     <password>Rfvbgt79</password>
                 </configuration>
