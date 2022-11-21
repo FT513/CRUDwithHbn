@@ -42,15 +42,19 @@ public class HBNLabelRepositoryImpl implements LabelRepository {
     @Override
     public List<Label> getAll() {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
         List labels = session.createQuery("FROM Label").list();
+
+        session.close();
         return labels;
     }
 
     @Override
     public Label save(Label label) {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
         label.setId((Integer) session.save(label));
         transaction.commit();
         session.close();

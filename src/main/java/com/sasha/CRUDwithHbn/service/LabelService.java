@@ -19,6 +19,8 @@ public class LabelService {
         this.labelRepository = labelRepository;
     }
 
+    LabelRepository lR = new HBNLabelRepositoryImpl();
+
     public Label update(Label label) {
         return labelRepository.update(label);
     }
@@ -36,7 +38,7 @@ public class LabelService {
     }
 
     public Label saveNewLabel(Label label) {
-        return labelRepository.save(label);
+        return lR.save(label);
     }
 
 }
