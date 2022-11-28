@@ -23,7 +23,9 @@
         <property name="hibernate.connection.pool_size">1</property>
 
 
-
+        <mapping class="com.sasha.CRUDwithHbn.model.Label"/>
+        <mapping class="com.sasha.CRUDwithHbn.model.Post"/>
+        <mapping class="com.sasha.CRUDwithHbn.model.Writer"/>
 
     </session-factory>
 </hibernate-configuration>
