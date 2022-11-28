@@ -5,7 +5,7 @@ import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table (name = "posts")
+@Table (name = "posts", catalog = "datahiber")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
