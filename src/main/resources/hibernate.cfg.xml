@@ -20,6 +20,10 @@
         <property name="hibernate.connection.password">
             Rfvbgt79
         </property>
+        <property name="hibernate.connection.pool_size">1</property>
+
+
+
 
     </session-factory>
 </hibernate-configuration>
