@@ -45,7 +45,6 @@ public class HBNPostRepositoryImpl implements PostRepository {
     @Override
     public List<Post> getAll() {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
         String hql = String.format("FROM Post as post " +
                 "inner join fetch Label as label " +
                 "where post.PostStatus not equals %s", "DELETE");

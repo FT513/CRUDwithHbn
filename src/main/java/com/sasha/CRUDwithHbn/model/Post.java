@@ -22,20 +22,20 @@ public class Post {
     private String updated;
 
 
-    @JoinTable(name = "post_labels",
-            joinColumns = @JoinColumn(name = "post_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "label_id",
-                    referencedColumnName = "id")
-    )
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Label> labels;
+    @JoinTable(name = "post_labels",
+            joinColumns = @JoinColumn(name = "post_id"),
+                   // referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "label_id")
+                    //,referencedColumnName = "id")
+    )
+        private List<Label> labels;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "post_status")
     private PostStatus postStatus;
 
-    @ManyToMany(mappedBy = "writers", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "posts", fetch = FetchType.LAZY)
     private List<Writer> writers;
 
 

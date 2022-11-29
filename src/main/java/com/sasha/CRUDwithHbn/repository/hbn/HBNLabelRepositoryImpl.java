@@ -12,9 +12,7 @@ public class HBNLabelRepositoryImpl implements LabelRepository {
     @Override
     public Label getById(Integer id) {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
         Label label = session.get(Label.class, id);
-        transaction.commit();
         session.close();
         return label;
     }
@@ -42,10 +40,7 @@ public class HBNLabelRepositoryImpl implements LabelRepository {
     @Override
     public List<Label> getAll() {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.getTransaction();
-        transaction.begin();
         List labels = session.createQuery("FROM Label").list();
-
         session.close();
         return labels;
     }
