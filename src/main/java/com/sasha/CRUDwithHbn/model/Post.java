@@ -3,6 +3,7 @@ package com.sasha.CRUDwithHbn.model;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table (name = "posts", catalog = "datahiber")
@@ -25,11 +26,10 @@ public class Post {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "post_labels",
             joinColumns = @JoinColumn(name = "post_id"),
-                   // referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "label_id")
-                    //,referencedColumnName = "id")
+
     )
-        private List<Label> labels;
+        private List<Label> labels = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "post_status")
