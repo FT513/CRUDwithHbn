@@ -13,7 +13,7 @@ public class HBNWriterRepositoryImpl implements WriterRepository {
     public Writer getById(Integer id) {
         Session session = HbnUtils.getSession();
         Transaction transaction = session.beginTransaction();
-        String hql = String.format("FROM Writer writer inner join fetch Post post inner join fetch Label label where writer.id = %d", id);
+        String hql = String.format("FROM Writer writer inner join fetch w.posts where writer.id = %d", id);
         Writer writer = (Writer) session.createQuery(hql);
         transaction.commit();
         session.close();

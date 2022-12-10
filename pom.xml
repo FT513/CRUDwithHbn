@@ -59,7 +59,7 @@
                     <url>jdbc:mysql://localhost:3306/datahiber</url>
                     <schemas>datahiber</schemas>
                     <user>root</user>
-                    <password>Rfvbgt79</password>
+                    <password>12345678</password>
                 </configuration>
             </plugin>
 

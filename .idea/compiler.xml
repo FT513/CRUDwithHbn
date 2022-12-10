@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CRUDwithHibernate" />
+        <module name="CRUDwithHbn2" />
         <module name="CRUDwithHibernate1.0" />
       </profile>
     </annotationProcessing>

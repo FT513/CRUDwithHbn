@@ -13,10 +13,10 @@ post_status CHARACTER VARYING(30)
 
 CREATE TABLE post_labels(
 post_id INTEGER,
-labels_id INTEGER,
-PRIMARY KEY(post_id, labels_id),
+label_id INTEGER,
+PRIMARY KEY(post_id, label_id),
 CONSTRAINT fk_post_id FOREIGN KEY(post_id) REFERENCES posts(id),
-CONSTRAINT fk_labal_id FOREIGN KEY(labels_id) REFERENCES labels(id)
+CONSTRAINT fk_label_id FOREIGN KEY(label_id) REFERENCES labels(id)
  );
 
 CREATE TABLE writers(
