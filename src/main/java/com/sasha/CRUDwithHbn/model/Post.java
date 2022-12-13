@@ -21,12 +21,12 @@ public class Post {
     private String content;
 
     @Column(name = "created")
-   // @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created;
+    @Temporal(TemporalType.DATE)
+    private Date created;
 
     @Column(name = "updated")
-   // @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updated;
+    @Temporal(TemporalType.DATE)
+    private Date updated;
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -48,7 +48,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Integer id, String content, LocalDateTime created, LocalDateTime updated, List<Label> labels, PostStatus postStatus) {
+    public Post(Integer id, String content, Date created, Date updated, List<Label> labels, PostStatus postStatus) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -73,19 +73,19 @@ public class Post {
         this.content = content;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public LocalDateTime getUpdated() {
+    public Date getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDateTime updated) {
+    public void setUpdated(Date updated) {
         this.updated = updated;
     }
 
