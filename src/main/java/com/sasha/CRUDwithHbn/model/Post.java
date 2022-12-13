@@ -3,7 +3,11 @@ package com.sasha.CRUDwithHbn.model;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Entity
 @Table (name = "posts", catalog = "datahiber")
@@ -17,10 +21,12 @@ public class Post {
     private String content;
 
     @Column(name = "created")
-    private String created;
+   // @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime created;
 
     @Column(name = "updated")
-    private String updated;
+   // @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updated;
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -42,7 +48,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Integer id, String content, String created, String updated, List<Label> labels, PostStatus postStatus) {
+    public Post(Integer id, String content, LocalDateTime created, LocalDateTime updated, List<Label> labels, PostStatus postStatus) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -51,11 +57,11 @@ public class Post {
         this.postStatus = postStatus;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -67,20 +73,39 @@ public class Post {
         this.content = content;
     }
 
-    public String getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public String getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(String updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
+    }
+
+    public PostStatus getPostStatus() {
+        return postStatus;
+    }
+
+    public void setPostStatus(PostStatus postStatus) {
+        this.postStatus = postStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", labels=" + labels +
+                '}';
     }
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "posts")
@@ -92,18 +117,5 @@ public class Post {
         this.labels = labels;
     }
 
-    public PostStatus getPostStatus() {return postStatus;  }
 
-    public void setPostStatus(PostStatus postStatus) {this.postStatus = postStatus;  }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", created='" + created + '\'' +
-                ", updated='" + updated + '\'' +
-                ", labels=" + labels +
-                '}';
-    }
 }

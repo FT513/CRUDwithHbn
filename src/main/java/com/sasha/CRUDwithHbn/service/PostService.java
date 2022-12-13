@@ -4,6 +4,7 @@ package com.sasha.CRUDwithHbn.service;
 
 
 import com.sasha.CRUDwithHbn.model.Post;
+import com.sasha.CRUDwithHbn.model.PostStatus;
 import com.sasha.CRUDwithHbn.repository.PostRepository;
 import com.sasha.CRUDwithHbn.repository.hbn.HBNPostRepositoryImpl;
 
@@ -37,8 +38,7 @@ public class PostService {
         return postRepository.getAll();
     }
 
-    public Post save(Post post) {
-        return postRepository.save(post);
+    public Post save(Post post) { return postRepository.save(post);
     }
 
 

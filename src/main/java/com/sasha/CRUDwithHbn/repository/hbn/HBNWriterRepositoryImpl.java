@@ -46,7 +46,7 @@ public class HBNWriterRepositoryImpl implements WriterRepository {
         Session session = HbnUtils.getSession();
         Transaction transaction = session.beginTransaction();
         String hql = "FROM Writer writer inner join fetch Post post inner join fetch Label label";
-        List writers = session.createQuery(hql).list();
+        List<Writer> writers = session.createQuery(hql).list();
         transaction.commit();
         session.close();
         return writers;
