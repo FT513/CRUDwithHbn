@@ -1,6 +1,8 @@
 package com.sasha.CRUDwithHbn.model;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.xml.crypto.Data;
@@ -21,11 +23,11 @@ public class Post {
     private String content;
 
     @Column(name = "created")
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
     private Date created;
 
     @Column(name = "updated")
-    @Temporal(TemporalType.DATE)
+    @UpdateTimestamp
     private Date updated;
 
 
