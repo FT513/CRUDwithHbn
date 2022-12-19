@@ -6,6 +6,7 @@ import com.sasha.CRUDwithHbn.repository.PostRepository;
 import com.sasha.CRUDwithHbn.utils.HbnUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -13,10 +14,7 @@ public class HBNPostRepositoryImpl implements PostRepository {
     @Override
     public Post getById(Integer id) {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
-        String hql = String.format("FROM Post post inner join fetch Label label where post.id = %d", id);
-        Post post = (Post) session.createQuery(hql);
-        transaction.commit();
+        Post post = (Post) session.get(Post.class, id);
         session.close();
         return post;
     }
@@ -45,10 +43,7 @@ public class HBNPostRepositoryImpl implements PostRepository {
     @Override
     public List<Post> getAll() {
         Session session = HbnUtils.getSession();
-        String hql = String.format("FROM Posts as posts " +
-                "inner join fetch Labels as labels " +
-                "where posts.post_status <> '%s'", "DELETE");
-        List<Post> posts = session.createQuery(hql).list();
+        List<Post> posts = session.createQuery("from Post as p where p.postStatus = 'ACTIVE'").list();
         return posts;
     }
 

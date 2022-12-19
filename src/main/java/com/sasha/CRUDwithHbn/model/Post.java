@@ -34,12 +34,10 @@ public class Post {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "post_labels",
             joinColumns = @JoinColumn(name = "post_id"),
-            inverseJoinColumns = @JoinColumn(name = "label_id")
+            inverseJoinColumns = @JoinColumn(name = "label_id"))
+        private List<Label> labels;
 
-    )
-        private List<Label> labels = new ArrayList<>();
-
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "post_status")
     private PostStatus postStatus;
 
