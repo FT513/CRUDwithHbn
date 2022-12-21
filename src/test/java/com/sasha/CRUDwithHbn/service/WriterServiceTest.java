@@ -54,7 +54,8 @@ private WriterService writerUnderTest = new WriterService(writerRepository);
         assertEquals(writerUnderTest.save(writer), writer);
     }
 
-    private Writer getWriter(){
+
+    public Writer getWriter(){
         Writer writer = new Writer();
         writer.setId(1);
         return writer;

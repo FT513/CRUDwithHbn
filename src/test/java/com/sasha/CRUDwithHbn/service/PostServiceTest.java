@@ -52,7 +52,8 @@ public class PostServiceTest {
         assertEquals(postUnderTest.save(post), post);
     }
 
-    private Post getPost(){
+
+    public Post getPost(){
         Post post = new Post();
         post.setId(1);
         return post;

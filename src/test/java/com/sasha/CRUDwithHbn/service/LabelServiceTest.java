@@ -53,7 +53,8 @@ public class LabelServiceTest {
         assertEquals(serviceUnderTest.saveNewLabel(label), label);
     }
 
-    private Label getLabel(){
+
+    public Label getLabel(){
         Label label = new Label();
         label.setId(1);
         label.setName("John");
