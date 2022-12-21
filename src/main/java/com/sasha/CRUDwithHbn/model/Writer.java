@@ -1,5 +1,9 @@
 package com.sasha.CRUDwithHbn.model;
 
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,11 +22,10 @@ public class Writer {
     private String lastName;
 
     @JoinTable(name = "writer_posts",
-     joinColumns = @JoinColumn(name = "writer_id",
-     referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "posts_id",
-    referencedColumnName = "id"))
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+     joinColumns = @JoinColumn(name = "writer_id"),
+    inverseJoinColumns = @JoinColumn(name = "posts_id"))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @Fetch(FetchMode.JOIN)
     private List<Post> posts;
 
 
@@ -62,7 +65,7 @@ public class Writer {
         this.lastName = lastName;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "writers", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "writers", cascade = CascadeType.ALL)
     public List<Post> getPosts() {
         return posts;
     }

@@ -1,21 +1,22 @@
 package com.sasha.CRUDwithHbn.repository.hbn;
 
+import com.sasha.CRUDwithHbn.model.Post;
 import com.sasha.CRUDwithHbn.model.Writer;
 import com.sasha.CRUDwithHbn.repository.WriterRepository;
 import com.sasha.CRUDwithHbn.utils.HbnUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HBNWriterRepositoryImpl implements WriterRepository {
     @Override
     public Writer getById(Integer id) {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
-        String hql = String.format("FROM Writer writer inner join fetch w.posts where writer.id = %d", id);
-        Writer writer = (Writer) session.createQuery(hql);
-        transaction.commit();
+        Writer writer = session.get(Writer.class, id);
         session.close();
         return writer;
     }
@@ -34,9 +35,9 @@ public class HBNWriterRepositoryImpl implements WriterRepository {
     public void deleteById(Integer id) {
         Session session = HbnUtils.getSession();
         Transaction transaction = session.beginTransaction();
-        String hql = String.format("FROM Writer writer inner join fetch Post post inner join fetch Label label where writer.id = %d", id);
-        Writer writer = (Writer) session.createQuery(hql);
-        session.delete(writer);
+        Query query = session.createQuery("delete Writer where id =:id");
+        query.setParameter("id", id);
+        query.executeUpdate();
         transaction.commit();
         session.close();
     }
@@ -44,21 +45,16 @@ public class HBNWriterRepositoryImpl implements WriterRepository {
     @Override
     public List<Writer> getAll() {
         Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
-        String hql = "FROM Writer writer inner join fetch Post post inner join fetch Label label";
-        List<Writer> writers = session.createQuery(hql).list();
-        transaction.commit();
+        List<Writer> writers = session.createQuery("from Writer").list();
         session.close();
         return writers;
     }
 
     @Override
     public Writer save(Writer writer) {
-        Session session = HbnUtils.getSession();
-        Transaction transaction = session.beginTransaction();
-        writer.setId((Integer)session.save(writer));
-        transaction.commit();
-        session.close();
-        return writer;
+    Session session = HbnUtils.getSession();
+    writer.setId((Integer)session.save(writer));
+    session.close();
+    return writer;
     }
 }

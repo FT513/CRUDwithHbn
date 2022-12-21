@@ -4,6 +4,7 @@ import com.sasha.CRUDwithHbn.model.Post;
 import com.sasha.CRUDwithHbn.model.PostStatus;
 import com.sasha.CRUDwithHbn.repository.PostRepository;
 import com.sasha.CRUDwithHbn.utils.HbnUtils;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -14,7 +15,8 @@ public class HBNPostRepositoryImpl implements PostRepository {
     @Override
     public Post getById(Integer id) {
         Session session = HbnUtils.getSession();
-        Post post = (Post) session.get(Post.class, id);
+        Post post = session.get(Post.class, id);
+        Hibernate.initialize(post);
         session.close();
         return post;
     }

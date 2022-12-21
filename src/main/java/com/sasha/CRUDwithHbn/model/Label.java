@@ -14,7 +14,7 @@ public class Label {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "labels", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "labels", fetch = FetchType.EAGER)
     private List<Post> posts;
 
     public Label(){
