@@ -18,7 +18,12 @@ public class HBNPostRepositoryImpl implements PostRepository {
         Post post = session.get(Post.class, id);
         Hibernate.initialize(post);
         session.close();
-        return post;
+        if (post.getPostStatus() == PostStatus.DELETED) {
+            System.out.println("Записи не существует");
+            return null;
+        } else {
+            return post;
+        }
     }
 
     @Override
@@ -54,7 +59,7 @@ public class HBNPostRepositoryImpl implements PostRepository {
         post.setPostStatus(PostStatus.ACTIVE);
         Session session = HbnUtils.getSession();
         Transaction transaction = session.beginTransaction();
-        post.setId((Integer)session.save(post));
+        post.setId((Integer) session.save(post));
         transaction.commit();
         session.close();
         return post;

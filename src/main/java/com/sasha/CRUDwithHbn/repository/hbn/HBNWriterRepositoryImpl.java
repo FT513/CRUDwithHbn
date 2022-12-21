@@ -52,9 +52,9 @@ public class HBNWriterRepositoryImpl implements WriterRepository {
 
     @Override
     public Writer save(Writer writer) {
-    Session session = HbnUtils.getSession();
-    writer.setId((Integer)session.save(writer));
-    session.close();
-    return writer;
+        Session session = HbnUtils.getSession();
+        writer.setId((Integer) session.save(writer));
+        session.close();
+        return writer;
     }
 }
