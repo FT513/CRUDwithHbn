@@ -24,7 +24,7 @@ public class Writer {
     @JoinTable(name = "writer_posts",
             joinColumns = @JoinColumn(name = "writer_id"),
             inverseJoinColumns = @JoinColumn(name = "posts_id"))
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)
     private List<Post> posts;
 
