@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/datahiber
+        </property>
+        <property name="hibernate.connection.username">
+            root
+        </property>
+        <property name="hibernate.connection.password">
+            Rfvbgt79
+        </property>
+        <property name="hibernate.connection.pool_size">1</property>
+
+
+        <mapping class="com.sasha.CRUDwithHbn.model.Label"/>
+        <mapping class="com.sasha.CRUDwithHbn.model.Post"/>
+        <mapping class="com.sasha.CRUDwithHbn.model.Writer"/>
+
+    </session-factory>
+</hibernate-configuration>
