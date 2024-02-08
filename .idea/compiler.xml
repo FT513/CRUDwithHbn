@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CRUDwithHibernate" />
         <module name="CRUDwithHibernate1.0" />
-        <module name="CRUDwithHbn" />
       </profile>
     </annotationProcessing>
   </component>
